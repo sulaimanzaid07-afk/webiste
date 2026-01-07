@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zaid Sulaiman | Data Science & AI Portfolio</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <style>
+    :root{
+      --brand-blue:#0b5ed7;
+      --brand-cyan:#00c2ff;
+      --ink:#0b1320;
+      --muted:#6c757d;
+      --card-border: rgba(13, 110, 253, 0.12);
+      --shadow: 0 12px 30px rgba(0,0,0,.08);
+      --radius: 18px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      color: var(--ink);
+    }
+
+    /* Navbar */
+    .navbar{
+      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,.75);
+      border-bottom: 1px solid rgba(13,110,253,.08);
+    }
+    [data-bs-theme="dark"] .navbar{
+      background: rgba(10, 15, 25, .75);
+      border-bottom: 1px solid rgba(0, 194, 255, .12);
+    }
+
+    /* ===== Logo (logo.png) ===== */
+    .logo-img{
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 10px; /* remove if you want sharp corners */
+    }
+    @media (max-width: 576px){
+      .logo-img{ height: 38px; }
+    }
+
+    /* Hero */
+    .hero{
+      position: relative;
+      padding-top: 92px;
+      padding-bottom: 40px;
+      overflow: hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-200px -200px auto -200px;
+      height: 560px;
+      background:
+        radial-gradient(closest-side, rgba(0, 194, 255, .20), transparent 60%),
+        radial-gradient(closest-side, rgba(11, 94, 215, .18), transparent 60%);
+      filter: blur(2px);
+      pointer-events:none;
+      z-index:0;
+    }
+    .hero .container{ position: relative; z-index: 1; }
+
+    .hero-card{
+      border-radius: var(--radius);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow);
+      background: rgba(255,255,255,.85);
+    }
+    [data-bs-theme="dark"] .hero-card{
+      background: rgba(15, 20, 30, .75);
+      border-color: rgba(0, 194, 255, .14);
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      padding:.45rem .75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(13,110,253,.18);
+      background: rgba(13,110,253,.06);
+      font-size: .9rem;
+      color: var(--ink);
+    }
+    [data-bs-theme="dark"] .pill{
+      border-color: rgba(0, 194, 255, .20);
+      background: rgba(0, 194, 255, .10);
+      color: #e8f0ff;
+    }
+
+    /* Sections */
+    section{ padding: 70px 0; }
+    .section-title{ font-weight: 800; letter-spacing: -0.02em; }
+    .section-lead{ color: var(--muted); max-width: 64ch; }
+
+    /* Cards */
+    .soft-card{
+      border-radius: var(--radius);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow);
+      background: rgba(255,255,255,.92);
+    }
+    [data-bs-theme="dark"] .soft-card{
+      background: rgba(15, 20, 30, .75);
+      border-color: rgba(0, 194, 255, .14);
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:.4rem;
+      padding:.35rem .6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(108,117,125,.18);
+      background: rgba(108,117,125,.06);
+      font-size: .85rem;
+      color: var(--muted);
+      margin: .2rem .2rem 0 0;
+    }
+    [data-bs-theme="dark"] .tag{
+      border-color: rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.75);
+    }
+
+    /* Timeline */
+    .timeline{ position: relative; padding-left: 22px; }
+    .timeline::before{
+      content:"";
+      position:absolute;
+      left: 6px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: linear-gradient(var(--brand-blue), var(--brand-cyan));
+      border-radius: 2px;
+      opacity: .8;
+    }
+    .timeline-item{ position: relative; padding: 0 0 22px 0; }
+    .timeline-item:last-child{ padding-bottom: 0; }
+    .timeline-item::before{
+      content:"";
+      position:absolute;
+      left: -1px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: #fff;
+      border: 3px solid var(--brand-blue);
+      box-shadow: 0 8px 22px rgba(11, 94, 215, .22);
+    }
+    [data-bs-theme="dark"] .timeline-item::before{ background: rgba(15, 20, 30, .95); }
+
+    /* Footer */
+    footer{
+      border-top: 1px solid rgba(13,110,253,.08);
+      padding: 28px 0;
+      color: var(--muted);
+    }
+    [data-bs-theme="dark"] footer{ border-top: 1px solid rgba(0, 194, 255, .12); }
+
+    /* Back to top button */
+    .back-to-top{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 999;
+      display: none;
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+    }
+
+    .icon-badge{
+      width: 42px; height: 42px;
+      border-radius: 14px;
+      display:grid; place-items:center;
+      background: rgba(13,110,253,.08);
+      border: 1px solid rgba(13,110,253,.18);
+      color: var(--brand-blue);
+      flex: 0 0 auto;
+    }
+    [data-bs-theme="dark"] .icon-badge{
+      background: rgba(0, 194, 255, .12);
+      border-color: rgba(0, 194, 255, .20);
+      color: var(--brand-cyan);
+    }
+
+    .muted{ color: var(--muted); }
+
+    /* Improve anchor offset under fixed navbar */
+    .anchor-offset{ scroll-margin-top: 92px; }
+  </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="110" tabindex="0">
+
+  <!-- Navbar -->
+  <nav id="mainNav" class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+
+      <!-- ✅ LOGO ADDED HERE (logo.png) -->
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+        <img src="logo.png" alt="Zaid Logo" class="logo-img" />
+        <div class="d-flex flex-column lh-1">
+          <span class="fw-bold">Zaid Sulaiman</span>
+          <small class="text-secondary">Data Science & AI</small>
+        </div>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks"
+              aria-controls="navLinks" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navLinks">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#resume">Resume</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#certs">Certs</a></li>
+          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+          <li class="nav-item"><a class="nav-link" href="#work">Work</a></li>
+          <li class="nav-item"><a class="nav-link" href="#design">Design</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+
+          <li class="nav-item ms-lg-2">
+            <button id="themeToggle" class="btn btn-outline-primary btn-sm rounded-pill px-3" type="button" aria-label="Toggle theme">
+              <i class="bi bi-moon-stars me-1"></i><span class="d-none d-sm-inline">Theme</span>
+            </button>
+          </li>
+
+          <li class="nav-item ms-lg-2">
+            <a class="btn btn-primary btn-sm rounded-pill px-3" href="#projects">
+              <i class="bi bi-rocket-takeoff me-1"></i>View Projects
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero / Cover -->
+  <header id="home" class="hero anchor-offset">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-7">
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="pill"><i class="bi bi-mortarboard"></i> HTU • 3rd Year</span>
+            <span class="pill"><i class="bi bi-geo-alt"></i> Amman, Jordan</span>
+            <span class="pill"><i class="bi bi-cpu"></i> Data Science & AI</span>
+          </div>
+
+          <h1 class="display-5 fw-bold mb-3">Zaid Sulaiman</h1>
+          <p class="fs-5 muted mb-4">
+            Bachelor’s Student in <strong>Data Science & Artificial Intelligence</strong> at <strong>Al-Hussein Technical University (HTU)</strong>.
+          </p>
+
+          <div class="soft-card p-3 p-md-4 mb-4">
+            <div class="d-flex gap-3">
+              <div class="icon-badge"><i class="bi bi-lightning-charge"></i></div>
+              <div>
+                <div class="fw-semibold mb-1">Portfolio Statement</div>
+                <div class="muted">“Applying data, intelligence, and technology to solve real-world problems.”</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex flex-wrap gap-2">
+            <a class="btn btn-primary rounded-pill px-4" href="#contact">
+              <i class="bi bi-envelope-paper me-2"></i>Contact Me
+            </a>
+            <a class="btn btn-outline-primary rounded-pill px-4" href="mailto:zaid.sulaiman@email.com">
+              <i class="bi bi-send me-2"></i>Email
+            </a>
+            <a class="btn btn-outline-secondary rounded-pill px-4" href="https://linkedin.com/in/zaidsulaiman" target="_blank" rel="noopener">
+              <i class="bi bi-linkedin me-2"></i>LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="hero-card p-4">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <div class="d-flex align-items-center gap-2">
+                <!-- Optional small logo repeat in hero -->
+                <img src="logo.png" alt="Zaid Logo" class="logo-img" style="height:46px;" />
+                <div>
+                  <div class="fw-bold">Quick Info</div>
+                  <small class="muted">At a glance</small>
+                </div>
+              </div>
+              <span class="badge text-bg-primary rounded-pill">Open to Internships</span>
+            </div>
+
+            <div class="row g-3">
+              <div class="col-12">
+                <div class="soft-card p-3">
+                  <div class="d-flex gap-3">
+                    <div class="icon-badge"><i class="bi bi-person-badge"></i></div>
+                    <div>
+                      <div class="fw-semibold">Role Goal</div>
+                      <div class="muted">Data Scientist / AI Engineer</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="soft-card p-3">
+                  <div class="d-flex gap-3">
+                    <div class="icon-badge"><i class="bi bi-tools"></i></div>
+                    <div>
+                      <div class="fw-semibold">Core Tools</div>
+                      <div class="muted">Python • SQL • Power BI • scikit-learn</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="soft-card p-3">
+                  <div class="d-flex gap-3">
+                    <div class="icon-badge"><i class="bi bi-award"></i></div>
+                    <div>
+                      <div class="fw-semibold">Focus Areas</div>
+                      <div class="muted">Analytics • ML • AI Systems • SDLC • Security</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr class="my-4"/>
+
+            <div class="d-flex flex-column gap-2">
+              <div class="d-flex align-items-center justify-content-between">
+                <span class="muted"><i class="bi bi-envelope"></i> Email</span>
+                <a class="text-decoration-none fw-semibold" href="mailto:zaid.sulaiman@email.com">zaid.sulaiman@email.com</a>
+              </div>
+              <div class="d-flex align-items-center justify-content-between">
+                <span class="muted"><i class="bi bi-linkedin"></i> LinkedIn</span>
+                <a class="text-decoration-none fw-semibold" href="https://linkedin.com/in/zaidsulaiman" target="_blank" rel="noopener">
+                  linkedin.com/in/zaidsulaiman
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- About -->
+  <section id="about" class="anchor-offset">
+    <div class="container">
+      <div class="row align-items-start g-4">
+        <div class="col-lg-5">
+          <h2 class="section-title mb-2">Introduction / About Me</h2>
+          <p class="section-lead">
+            A brief bio, background, and career objectives.
+          </p>
+
+          <div class="soft-card p-4">
+            <div class="d-flex gap-3">
+              <div class="icon-badge"><i class="bi bi-bullseye"></i></div>
+              <div>
+                <div class="fw-semibold mb-1">Career Objective</div>
+                <div class="muted">
+                  Pursue a role as a <strong>Data Scientist</strong> or <strong>AI Engineer</strong> to build intelligent, data-driven solutions
+                  that improve decision-making and create real-world impact.
+                </div>
+              </div>
+            </div>
+            <hr class="my-4"/>
+            <div class="d-flex gap-3">
+              <div class="icon-badge"><i class="bi bi-heart-pulse"></i></div>
+              <div>
+                <div class="fw-semibold mb-1">What I Enjoy</div>
+                <div class="muted">
+                  Learning continuously, solving problems, and working in collaborative, technology-driven environments.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <div class="soft-card p-4 p-md-5">
+            <h3 class="h5 fw-bold mb-3">Bio</h3>
+            <p class="muted mb-3">
+              I am <strong>Zaid Sulaiman</strong>, a third-year student majoring in <strong>Data Science and Artificial Intelligence</strong>
+              at <strong>Al-Hussein Technical University (HTU)</strong>. I have a strong academic foundation in data analytics,
+              machine learning, artificial intelligence, software engineering, and system analysis.
+            </p>
+            <p class="muted mb-0">
+              Throughout my studies, I worked on educational and applied projects in data analysis, dashboard development,
+              machine learning modeling, AI system design, cybersecurity risk assessment, and SDLC documentation—building
+              hands-on experience in turning theory into practical solutions.
+            </p>
+
+            <div class="mt-4">
+              <span class="tag"><i class="bi bi-graph-up"></i> Analytics</span>
+              <span class="tag"><i class="bi bi-cpu"></i> Machine Learning</span>
+              <span class="tag"><i class="bi bi-diagram-3"></i> AI Systems</span>
+              <span class="tag"><i class="bi bi-shield-lock"></i> Security</span>
+              <span class="tag"><i class="bi bi-kanban"></i> SDLC</span>
+              <span class="tag"><i class="bi bi-database"></i> SQL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resume -->
+  <section id="resume" class="anchor-offset bg-body-tertiary">
+    <div class="container">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-3 mb-4">
+        <div>
+          <h2 class="section-title mb-2">Resume / CV (Summary)</h2>
+          <p class="section-lead mb-0">Education, coursework, and a structured overview of skills.</p>
+        </div>
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-primary rounded-pill px-4" onclick="window.print()">
+            <i class="bi bi-printer me-2"></i>Print / Save PDF
+          </button>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="soft-card p-4 h-100">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div class="icon-badge"><i class="bi bi-mortarboard"></i></div>
+              <div>
+                <h3 class="h5 fw-bold mb-0">Education</h3>
+                <div class="muted">Academic background and timeline</div>
+              </div>
+            </div>
+
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="fw-semibold">B.Sc. Data Science & Artificial Intelligence</div>
+                <div class="muted">Al-Hussein Technical University (HTU) • 2023 – Present</div>
+                <div class="muted">Expected Graduation: 2027</div>
+              </div>
+            </div>
+
+            <hr class="my-4"/>
+
+            <div class="fw-semibold mb-2">Relevant Coursework</div>
+            <div class="d-flex flex-wrap">
+              <span class="tag">Data Science Programming</span>
+              <span class="tag">Data Analytics</span>
+              <span class="tag">Machine Learning</span>
+              <span class="tag">Artificial Intelligence & Intelligent Systems</span>
+              <span class="tag">Database Design & Development</span>
+              <span class="tag">Software Development Life Cycle (SDLC)</span>
+              <span class="tag">Data Structures & Algorithms</span>
+              <span class="tag">Cybersecurity Fundamentals</span>
+              <span class="tag">Computing Research Project</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="soft-card p-4 h-100">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div class="icon-badge"><i class="bi bi-briefcase"></i></div>
+              <div>
+                <h3 class="h5 fw-bold mb-0">Skills Snapshot</h3>
+                <div class="muted">Technical + soft skills</div>
+              </div>
+            </div>
+
+            <div class="row g-3">
+              <div class="col-12">
+                <div class="fw-semibold">Programming Languages</div>
+                <div class="muted">Python • SQL • Basic Java • Basic R</div>
+              </div>
+
+              <div class="col-12">
+                <div class="fw-semibold">Data & Analytics</div>
+                <div class="muted">Pandas • NumPy • Power BI • Microsoft Excel</div>
+              </div>
+
+              <div class="col-12">
+                <div class="fw-semibold">Machine Learning & AI</div>
+                <div class="muted">scikit-learn • Classification & Regression • Model evaluation • Hyperparameter tuning</div>
+              </div>
+
+              <div class="col-12">
+                <div class="fw-semibold">Databases</div>
+                <div class="muted">MySQL • Relational database design</div>
+              </div>
+
+              <div class="col-12">
+                <div class="fw-semibold">Tools & Platforms</div>
+                <div class="muted">Jupyter Notebook • Git & GitHub • Visual Studio Code</div>
+              </div>
+
+              <div class="col-12">
+                <div class="fw-semibold">Soft Skills</div>
+                <div class="muted">Analytical thinking • Problem-solving • Teamwork • Communication • Time management</div>
+              </div>
+            </div>
+
+            <div class="mt-4 d-flex flex-wrap">
+              <span class="tag"><i class="bi bi-git"></i> Git/GitHub</span>
+              <span class="tag"><i class="bi bi-bar-chart"></i> Power BI</span>
+              <span class="tag"><i class="bi bi-code-slash"></i> Python</span>
+              <span class="tag"><i class="bi bi-database"></i> SQL</span>
+              <span class="tag"><i class="bi bi-cpu"></i> ML</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="small muted mt-3">
+        Note: This is a summary CV section; you can extend it later with internships, work experience, and links.
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="anchor-offset">
+    <div class="container">
+      <div class="mb-4">
+        <h2 class="section-title mb-2">Educational Projects</h2>
+        <p class="section-lead mb-0">Selected projects with context, role, tools, and outcomes.</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Project 1 -->
+        <div class="col-lg-6">
+          <div class="soft-card p-4 h-100">
+            <div class="d-flex align-items-start gap-3">
+              <div class="icon-badge"><i class="bi bi-graph-up-arrow"></i></div>
+              <div class="flex-grow-1">
+                <h3 class="h5 fw-bold mb-1">iPhone 14 Demand Analysis Dashboard</h3>
+                <div class="muted mb-3">Power BI • DAX • Excel</div>
+
+                <div class="fw-semibold">Context</div>
+                <p class="muted">
+                  An analytics project focused on demand patterns for iPhone 14 models, using sales rank as a proxy for demand.
+                </p>
+
+                <div class="fw-semibold">My Role</div>
+                <ul class="muted mb-3">
+                  <li>Data cleaning and preparation</li>
+                  <li>Creating DAX measures</li>
+                  <li>Designing interactive dashboards (cards + slicers)</li>
+                </ul>
+
+                <div class="fw-semibold">Outcome / Impact</div>
+                <ul class="muted mb-0">
+                  <li>Identified high-demand models and seasonal trends</li>
+                  <li>Supported data-driven inventory and demand planning</li>
+                  <li>Delivered clear visual insights for decision-making</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="col-lg-6">
+          <div class="soft-card p-4 h-100">
+            <div class="d-flex align-items-start gap-3">
+              <div class="icon-badge"><i class="bi bi-tags"></i></div>
+              <div class="flex-grow-1">
+                <h3 class="h5 fw-bold mb-1">AI Pricing System for OpenSooq</h3>
+                <div class="muted mb-3">ML • NLP • Computer Vision • Cloud AI (concept)</div>
+
+                <div class="fw-semibold">Context</div>
+                <p class="muted">
+                  Designed an AI-powered system to suggest fair prices for product listings that are missing price information.
+                </p>
+
+                <div class="fw-semibold">My Role</div>
+                <ul class="muted mb-3">
+                  <li>Organizational and stakeholder analysis</li>
+                  <li>Defined functional and non-functional requirements</li>
+                  <li>Designed AI workflow using ML, NLP, and Computer Vision</li>
+                </ul>
+
+                <div class="fw-semibold">Outcome / Impact</div>
+                <ul class="muted mb-0">
+                  <li>Improved pricing transparency and listing efficiency</li>
+                  <li>Reduced seller effort and increased buyer trust</li>
+                  <li>Demonstrated real-world AI application in e-commerce</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="col-lg-6">
+          <div class="soft-card p-4 h-100">
+            <div class="d-flex align-items-start gap-3">
+              <div class="icon-badge"><i class="bi bi-shield-check"></i></div>
+              <div class="flex-grow-1">
+                <h3 class="h5 fw-bold mb-1">Enterprise Security Risk Assessment – Sofix Company</h3>
+                <div class="muted mb-3">ISO 31000 • Risk Registers • Security Analysis</div>
+
+                <div class="fw-semibold">Context</div>
+                <p class="muted">
+                  A cybersecurity project focused on assessing IT risks and proposing controls for an enterprise environment.
+                </p>
+
+                <div class="fw-semibold">My Role</div>
+                <ul class="muted mb-3">
+                  <li>Identified assets, threats, and vulnerabilities</li>
+                  <li>Assessed risk likelihood and impact</li>
+                  <li>Suggested countermeasures using ISO 31000</li>
+                </ul>
+
+                <div class="fw-semibold">Outcome / Impact</div>
+                <ul class="muted mb-0">
+                  <li>Delivered a structured risk assessment report</li>
+                  <li>Strengthened understanding of enterprise cybersecurity</li>
+                  <li>Applied risk management theory in practice</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="col-lg-6">
+          <div class="soft-card p-4 h-100">
+            <div class="d-flex align-items-start gap-3">
+              <div class="icon-badge"><i class="bi bi-phone"></i></div>
+              <div class="flex-grow-1">
+                <h3 class="h5 fw-bold mb-1">PetCare Connect Mobile Application (SDLC Project)</h3>
+                <div class="muted mb-3">Agile • Waterfall • System Analysis • Database Design</div>
+
+                <div class="fw-semibold">Context</div>
+                <p class="muted">
+                  Designed and analyzed a mobile app for pet adoption, lost-and-found, and verified veterinary consultations.
+                </p>
+
+                <div class="fw-semibold">My Role</div>
+                <ul class="muted mb-3">
+                  <li>Requirements gathering (interviews & surveys)</li>
+                  <li>System analysis and database comparison</li>
+                  <li>SDLC model application and feasibility study</li>
+                </ul>
+
+                <div class="fw-semibold">Outcome / Impact</div>
+                <ul class="muted mb-0">
+                  <li>Produced a full SDLC and feasibility report</li>
+                  <li>Demonstrated software engineering and system design skills</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="col-lg-12">
+          <div class="soft-card p-4">
+            <div class="d-flex align-items-start gap-3">
+              <div class="icon-badge"><i class="bi bi-heart-pulse"></i></div>
+              <div class="flex-grow-1">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-2">
+                  <div>
+                    <h3 class="h5 fw-bold mb-1">Machine Learning – Gallstone Disease Detection</h3>
+                    <div class="muted">Python • Pandas • scikit-learn • GridSearchCV • Cross Validation</div>
+                  </div>
+                  <span class="badge text-bg-primary rounded-pill">Healthcare Classification</span>
+                </div>
+
+                <div class="row g-3 mt-2">
+                  <div class="col-md-6">
+                    <div class="fw-semibold">Context</div>
+                    <p class="muted mb-2">
+                      Built machine learning models to predict gallstone disease using the UCI Gallstone dataset.
+                    </p>
+                    <div class="fw-semibold">My Role</div>
+                    <ul class="muted mb-0">
+                      <li>Data preprocessing and feature engineering</li>
+                      <li>Model implementation and evaluation</li>
+                      <li>Hyperparameter tuning with GridSearchCV</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="fw-semibold">Models Used</div>
+                    <p class="muted mb-2">
+                      Logistic Regression • SVM • Random Forest • k-NN
+                    </p>
+                    <div class="fw-semibold">Outcome / Impact</div>
+                    <ul class="muted mb-0">
+                      <li>Selected optimal models using cross-validation</li>
+                      <li>Demonstrated full ML pipeline from preparation to evaluation</li>
+                      <li>Applied ML concepts in a healthcare context</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <hr class="my-4"/>
+
+                <div class="d-flex flex-wrap">
+                  <span class="tag"><i class="bi bi-check2-circle"></i> Data Cleaning</span>
+                  <span class="tag"><i class="bi bi-sliders2"></i> Feature Engineering</span>
+                  <span class="tag"><i class="bi bi-diagram-3"></i> Cross Validation</span>
+                  <span class="tag"><i class="bi bi-grid-3x3-gap"></i> Grid Search</span>
+                  <span class="tag"><i class="bi bi-clipboard-data"></i> Evaluation</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- row -->
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="anchor-offset bg-body-tertiary">
+    <div class="container">
+      <div class="mb-4">
+        <h2 class="section-title mb-2">Skills</h2>
+        <p class="section-lead mb-0">Hard skills and soft skills (organized and easy to scan).</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="soft-card p-4 h-100">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div class="icon-badge"><i class="bi bi-wrench-adjustable"></i></div>
+              <div>
+                <h3 class="h5 fw-bold mb-0">Hard Skills</h3>
+                <div class="muted">Technical proficiencies</div>
+              </div>
+            </div>
+            <div class="d-flex flex-wrap">
+              <span class="tag">Data Analysis & Visualization</span>
+              <span class="tag">Machine Learning & Model Evaluation</span>
+              <span class="tag">Artificial Intelligence System Design</span>
+              <span class="tag">Database Design & SQL</span>
+              <span class="tag">Cybersecurity Risk Assessment</span>
+              <span class="tag">Python</span>
+              <span class="tag">Power BI</span>
+              <span class="tag">scikit-learn</span>
+              <span class="tag">MySQL</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="soft-card p-4 h-100">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div class="icon-badge"><i class="bi bi-people"></i></div>
+              <div>
+                <h3 class="h5 fw-bold mb-0">Soft Skills</h3>
+                <div class="muted">How I work</div>
+              </div>
+            </div>
+            <div class="d-flex flex-wrap">
+              <span class="tag">Critical thinking</span>
+              <span class="tag">Communication</span>
+              <span class="tag">Adaptability</span>
+              <span class="tag">Collaboration</span>
+              <span class="tag">Problem-solving</span>
+              <span class="tag">Time management</span>
+              <span class="tag">Teamwork</span>
+              <span class="tag">Attention to detail</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certs" class="anchor-offset">
+    <div class="container">
+      <div class="mb-4">
+        <h2 class="section-title mb-2">Certifications & Awards</h2>
+        <p class="section-lead mb-0">Relevant academic certifications and recognitions.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <div class="soft-card p-4">
+            <div class="d-flex align-items-start gap-3">
+              <div class="icon-badge"><i class="bi bi-award"></i></div>
+              <div>
+                <h3 class="h5 fw-bold mb-2">Academic Certifications</h3>
+                <ul class="muted mb-2">
+                  <li>Data Analytics</li>
+                  <li>Machine Learning</li>
+                  <li>Artificial Intelligence Fundamentals</li>
+                </ul>
+                <div class="small muted">
+                  (To be updated as new certifications are earned)
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="soft-card p-4 h-100">
+            <div class="d-flex align-items-start gap-3">
+              <div class="icon-badge"><i class="bi bi-stars"></i></div>
+              <div>
+                <h3 class="h5 fw-bold mb-2">Highlight</h3>
+                <p class="muted mb-0">
+                  Strong academic foundation across analytics, ML/AI, SDLC, and security—backed by multiple course projects and reports.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education" class="anchor-offset bg-body-tertiary">
+    <div class="container">
+      <div class="mb-4">
+        <h2 class="section-title mb-2">Education</h2>
+        <p class="section-lead mb-0">Degree information and institution details.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-12">
+          <div class="soft-card p-4">
+            <div class="d-flex align-items-start gap-3">
+              <div class="icon-badge"><i class="bi bi-building"></i></div>
+              <div class="flex-grow-1">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-2">
+                  <div>
+                    <h3 class="h5 fw-bold mb-1">Al-Hussein Technical University (HTU)</h3>
+                    <div class="muted">Bachelor’s Degree in Data Science & Artificial Intelligence</div>
+                  </div>
+                  <span class="badge text-bg-primary rounded-pill">2023 – Present</span>
+                </div>
+                <div class="muted mt-2">Expected Graduation: 2027</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="anchor-offset">
+    <div class="container">
+      <div class="mb-4">
+        <h2 class="section-title mb-2">Testimonials / References</h2>
+        <p class="section-lead mb-0">Feedback that reflects work ethic and abilities.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <div class="soft-card p-4">
+            <div class="d-flex align-items-start gap-3">
+              <div class="icon-badge"><i class="bi bi-quote"></i></div>
+              <div>
+                <blockquote class="mb-2">
+                  “Zaid shows strong analytical thinking, attention to detail, and a clear understanding of data-driven problem solving.”
+                </blockquote>
+                <div class="muted">— Course Instructor, HTU</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="soft-card p-4 h-100">
+            <div class="d-flex align-items-start gap-3">
+              <div class="icon-badge"><i class="bi bi-person-lines-fill"></i></div>
+              <div>
+                <h3 class="h6 fw-bold mb-2">References</h3>
+                <p class="muted mb-0">
+                  Professional references are available upon request.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Personal Projects / Work / Potential Work -->
+  <section id="work" class="anchor-offset bg-body-tertiary">
+    <div class="container">
+      <div class="mb-4">
+        <h2 class="section-title mb-2">Personal Projects / Work / Potential Work</h2>
+        <p class="section-lead mb-0">Side projects and services you can provide.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="soft-card p-4 h-100">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div class="icon-badge"><i class="bi bi-lightbulb"></i></div>
+              <div>
+                <h3 class="h5 fw-bold mb-0">Personal & Side Projects</h3>
+                <div class="muted">Outside coursework</div>
+              </div>
+            </div>
+            <ul class="muted mb-0">
+              <li>Power BI dashboards for data analysis</li>
+              <li>Machine learning experiments using public datasets</li>
+              <li>System design and project planning reports</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="soft-card p-4 h-100">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div class="icon-badge"><i class="bi bi-bag-check"></i></div>
+              <div>
+                <h3 class="h5 fw-bold mb-0">Services / Potential Work</h3>
+                <div class="muted">What I can help with</div>
+              </div>
+            </div>
+            <ul class="muted mb-0">
+              <li>Data analysis and reporting</li>
+              <li>Dashboard development (Power BI)</li>
+              <li>Data preprocessing and ML modeling</li>
+              <li>Entry-level AI and analytics solutions</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Portfolio Appearance & Design -->
+  <section id="design" class="anchor-offset">
+    <div class="container">
+      <div class="mb-4">
+        <h2 class="section-title mb-2">Portfolio Appearance & Design</h2>
+        <p class="section-lead mb-0">Theme, logo, palette, and rationale.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="soft-card p-4 h-100">
+            <div class="d-flex align-items-start gap-3">
+              <div class="icon-badge"><i class="bi bi-file-earmark-person"></i></div>
+              <div>
+                <h3 class="h6 fw-bold mb-2">Cover Page</h3>
+                <p class="muted mb-0">
+                  Clean, professional layout with name, title, and contact information displayed clearly.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="soft-card p-4 h-100">
+            <div class="d-flex align-items-start gap-3">
+              <div class="icon-badge"><i class="bi bi-badge-tm"></i></div>
+              <div>
+                <h3 class="h6 fw-bold mb-2">Logo</h3>
+                <p class="muted mb-0">
+                  The website uses your uploaded image <strong>logo.png</strong> at the top navigation bar.
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-3 d-flex align-items-center gap-2">
+              <img src="logo.png" alt="Zaid Logo" class="logo-img" style="height:46px;" />
+              <div class="muted small">Displayed in the navbar.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="soft-card p-4 h-100">
+            <div class="d-flex align-items-start gap-3">
+              <div class="icon-badge"><i class="bi bi-palette"></i></div>
+              <div>
+                <h3 class="h6 fw-bold mb-2">Theme & Color Palette</h3>
+                <p class="muted mb-2">
+                  <strong>Primary Colors:</strong> Blue & Cyan
+                </p>
+                <ul class="muted mb-0">
+                  <li><strong>Blue</strong> → Trust, intelligence, professionalism</li>
+                  <li><strong>Cyan</strong> → Technology, innovation, data</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-3 d-flex gap-2">
+              <div class="rounded-3" style="width:34px;height:34px;background:var(--brand-blue);"></div>
+              <div class="rounded-3" style="width:34px;height:34px;background:var(--brand-cyan);"></div>
+              <div class="muted small align-self-center">Palette preview</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-12">
+          <div class="soft-card p-4">
+            <div class="d-flex align-items-start gap-3">
+              <div class="icon-badge"><i class="bi bi-layout-text-window-reverse"></i></div>
+              <div class="flex-grow-1">
+                <h3 class="h6 fw-bold mb-2">Layout & Navigation</h3>
+                <div class="muted">
+                  Well-organized sections, consistent spacing, strong readability, and a clean design suitable for a PDF,
+                  presentation slides, or a personal website. This site also includes a light/dark theme toggle.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- row -->
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="anchor-offset bg-body-tertiary">
+    <div class="container">
+      <div class="mb-4">
+        <h2 class="section-title mb-2">Contact</h2>
+        <p class="section-lead mb-0">Email or LinkedIn. (This form is front-end only.)</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <div class="soft-card p-4 h-100">
+            <div class="d-flex align-items-start gap-3">
+              <div class="icon-badge"><i class="bi bi-envelope"></i></div>
+              <div class="flex-grow-1">
+                <div class="fw-semibold">Email</div>
+                <a class="text-decoration-none" href="mailto:zaid.sulaiman@email.com">zaid.sulaiman@email.com</a>
+
+                <div class="mt-3 fw-semibold">LinkedIn</div>
+                <a class="text-decoration-none" href="https://linkedin.com/in/zaidsulaiman" target="_blank" rel="noopener">
+                  linkedin.com/in/zaidsulaiman
+                </a>
+
+                <hr class="my-4" />
+
+                <div class="fw-semibold mb-2">Quick Actions</div>
+                <div class="d-flex flex-wrap gap-2">
+                  <a class="btn btn-primary rounded-pill px-4" href="mailto:zaid.sulaiman@email.com">
+                    <i class="bi bi-send me-2"></i>Email Me
+                  </a>
+                  <a class="btn btn-outline-secondary rounded-pill px-4" href="https://linkedin.com/in/zaidsulaiman" target="_blank" rel="noopener">
+                    <i class="bi bi-linkedin me-2"></i>Open LinkedIn
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <div class="soft-card p-4 h-100">
+            <form id="contactForm" novalidate>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Your Name</label>
+                  <input type="text" class="form-control" id="name" placeholder="Enter your name" required />
+                  <div class="invalid-feedback">Please enter your name.</div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Your Email</label>
+                  <input type="email" class="form-control" id="email" placeholder="name@example.com" required />
+                  <div class="invalid-feedback">Please enter a valid email.</div>
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label fw-semibold">Subject</label>
+                  <input type="text" class="form-control" id="subject" placeholder="e.g., Internship opportunity" required />
+                  <div class="invalid-feedback">Please enter a subject.</div>
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label fw-semibold">Message</label>
+                  <textarea class="form-control" id="message" rows="5" placeholder="Write your message..." required></textarea>
+                  <div class="invalid-feedback">Please write a message.</div>
+                </div>
+
+                <div class="col-12 d-flex flex-wrap align-items-center gap-2">
+                  <button class="btn btn-primary rounded-pill px-4" type="submit">
+                    <i class="bi bi-chat-dots me-2"></i>Send (Demo)
+                  </button>
+                  <button class="btn btn-outline-secondary rounded-pill px-4" type="button" id="fillDemo">
+                    <i class="bi bi-magic me-2"></i>Fill Demo
+                  </button>
+                  <span id="formStatus" class="small muted"></span>
+                </div>
+              </div>
+            </form>
+
+            <div class="alert alert-info mt-4 mb-0" role="alert">
+              <strong>Note:</strong> This is a front-end demo form. For real email sending, connect it to a backend or a service like EmailJS.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2">
+          <img src="logo.png" alt="Zaid Logo" class="logo-img" style="height:38px;" />
+          <div>
+            <div class="fw-semibold">Zaid Sulaiman</div>
+            <div class="small muted">Data Science & Artificial Intelligence Student</div>
+          </div>
+        </div>
+        <div class="small muted">
+          © <span id="year"></span> • Built with Bootstrap • Blue & Cyan theme
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button id="backToTop" class="btn btn-primary back-to-top px-3 py-2" type="button" aria-label="Back to top">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // ===== Helpers =====
+    const $ = (sel) => document.querySelector(sel);
+
+    // Set current year
+    $("#year").textContent = new Date().getFullYear();
+
+    // Theme toggle (light/dark)
+    const themeToggle = $("#themeToggle");
+    const root = document.documentElement;
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem("zs_theme");
+    if (savedTheme) root.setAttribute("data-bs-theme", savedTheme);
+
+    function updateThemeIcon() {
+      const theme = root.getAttribute("data-bs-theme");
+      const icon = themeToggle.querySelector("i");
+      icon.className = (theme === "dark") ? "bi bi-sun me-1" : "bi bi-moon-stars me-1";
+    }
+    updateThemeIcon();
+
+    themeToggle.addEventListener("click", () => {
+      const current = root.getAttribute("data-bs-theme");
+      const next = current === "dark" ? "light" : "dark";
+      root.setAttribute("data-bs-theme", next);
+      localStorage.setItem("zs_theme", next);
+      updateThemeIcon();
+    });
+
+    // Close navbar on link click (mobile)
+    const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+    const navCollapse = document.getElementById("navLinks");
+    navLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
+        if (bsCollapse) bsCollapse.hide();
+      });
+    });
+
+    // Back to top visibility
+    const backToTop = $("#backToTop");
+    window.addEventListener("scroll", () => {
+      backToTop.style.display = (window.scrollY > 650) ? "inline-flex" : "none";
+    });
+    backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+    // Contact form (front-end demo)
+    const form = $("#contactForm");
+    const statusEl = $("#formStatus");
+
+    $("#fillDemo").addEventListener("click", () => {
+      $("#name").value = "Recruiter / Instructor";
+      $("#email").value = "example@email.com";
+      $("#subject").value = "Portfolio Feedback / Opportunity";
+      $("#message").value =
+        "Hi Zaid,\n\nI reviewed your portfolio and would like to discuss your projects and potential opportunities.\n\nBest regards,";
+      statusEl.textContent = "Demo data added.";
+      setTimeout(() => statusEl.textContent = "", 2000);
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      let valid = true;
+      const fields = ["name","email","subject","message"].map(id => document.getElementById(id));
+      fields.forEach(f => {
+        const ok = !!f.value.trim();
+        valid = valid && ok;
+        f.classList.toggle("is-invalid", !ok);
+        f.classList.toggle("is-valid", ok);
+      });
+
+      const email = $("#email");
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+      if (!emailOk) {
+        valid = false;
+        email.classList.add("is-invalid");
+        email.classList.remove("is-valid");
+      }
+
+      if (!valid) {
+        statusEl.textContent = "Please fix the highlighted fields.";
+        return;
+      }
+
+      statusEl.textContent = "Opening your email client (demo)...";
+      const mailto = new URL("mailto:zaid.sulaiman@email.com");
+      mailto.searchParams.set("subject", $("#subject").value.trim());
+      mailto.searchParams.set(
+        "body",
+        `From: ${$("#name").value.trim()} <${$("#email").value.trim()}>\n\n${$("#message").value.trim()}`
+      );
+      window.location.href = mailto.toString();
+
+      setTimeout(() => {
+        fields.forEach(f => f.classList.remove("is-valid"));
+        statusEl.textContent = "";
+      }, 2500);
+    });
+  </script>
+</body>
+</html>
